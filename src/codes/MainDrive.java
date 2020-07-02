@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Scanner;
 
-//import jdk.internal.org.jline.reader.UserInterruptException;
+import codes.datas.User;
+
 
 public class MainDrive {
 
@@ -113,17 +114,11 @@ public class MainDrive {
 //				String을 int로 변환. => wrapper 클래스(Integer활용)
 				int userBirth = Integer.parseInt(userInfos[2]);
 				
-//				생년을 나이로 변환 => 매년 정확한 나이가 나오도록.
+//				이름 / 폰번 / 나이를 가지고 User객체로 만들자.
+				User user = new User(userName, userPhoneNum, userBirth);
 				
-//				캘린더 객체 생성.=> 현재 시간이 기본값으로 들어감. 
-				Calendar now = Calendar.getInstance();
-				
-//				년도를 현재 날짜에서 get(Calendar.Year)로 뽑아내자.
-				int userAge = now.get(Calendar.YEAR) - userBirth + 1;
-				
-//				세개의 데이터를 가지고 => 양식을 가공.
-				String userInfoMessage = String.format("%s(&d세) : %s", userName, userAge, userPhoneNum);
-				
+//				만들어낸 user를 출력. => User클래스의 toString 오버라이딩 양식으로 가공하자.
+				System.out.println(user);
 				
 			}
 			
@@ -186,7 +181,7 @@ public class MainDrive {
 //			저장내용 : 3가지 정보를 한 줄로 묶어서.
 //			ex. 조경진, 010-5112-3237, 1988 => 한줄짜리 String으로 저장.
 			
-			String infoStr = String.format("%s, %s, %d", name, phoneNum, birthYear);
+			String infoStr = String.format("%s,%s,%d", name, phoneNum, birthYear);
 			
 //			묶인 한 줄을 파일에 기록
 			bw.append(infoStr);
